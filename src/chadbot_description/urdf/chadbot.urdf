@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+
+<robot name="chadbot">
+
+    <!--MATERIALS DEFS CUZ IM LAZY-->
+    <material name="blue">
+        <color rgba="0 0 0.8 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+
+    <material name="cyan">
+      <color rgba="0 1.0 1.0 1.0"/>
+    </material>
+
+
+    <!--BASE LINK-->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.254 0.2032 0.059182"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <!--WHEELS-->
+    <link name="RF_wheel">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.06985" radius="0.060325"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <joint name="RF_wheel_to_base" type="continuous">
+        <parent link="base_link"/>
+        <child link="RF_wheel"/>
+        <origin rpy="1.57079632679 0 0" xyz="0.09652 -0.136525 -0.0127"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="RR_wheel">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.06985" radius="0.060325"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <joint name="RR_wheel_to_base" type="continuous">
+        <parent link="base_link"/>
+        <child link="RR_wheel"/>
+        <origin rpy="1.57079632679 0 0" xyz="-0.09652 -0.136525 -0.0127"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="LF_wheel">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.06985" radius="0.060325"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <joint name="LF_wheel_to_base" type="continuous">
+        <parent link="base_link"/>
+        <child link="LF_wheel"/>
+        <origin rpy="-1.57079632679 0 0" xyz="0.09652 0.136525 -0.0127"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <link name="LR_wheel">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.06985" radius="0.060325"/>
+            </geometry>
+            <material name="blue"/>
+        </visual>
+    </link>
+
+    <joint name="LR_wheel_to_base" type="continuous">
+        <parent link="base_link"/>
+        <child link="LR_wheel"/>
+        <origin rpy="-1.57079632679 0 0" xyz="-0.09652 0.136525 -0.0127"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+
+    <!--SENSORS-->
+    <link name="camera_link">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <box size="0.0381 0.17653 0.03175"/>
+            </geometry>
+            <material name="cyan"/>
+        </visual>
+    </link>
+
+    <joint name="base_link_to_xtion" type="fixed">
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+        <origin rpy="0 0 0" xyz="0.10795 0 0.045466"/>
+    </joint>
+
+    <link name="laser_base">
+        <visual>
+            <origin rpy="0 0 0" xyx="0 0 0"/>
+            <geometry>
+                <box size="0.07 0.07 0.03985"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <joint name="base_link_to_laser_base" type="fixed">
+        <parent link="base_link"/>
+        <child link="laser_base"/>
+        <origin rpy="0 0 0" xyz="0.0508 0 0.049516"/>
+    </joint>
+
+    <link name="laser">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0"/>
+            <geometry>
+                <cylinder length="0.03" radius=".035"/>
+            </geometry>
+            <material name="cyan"/>
+        </visual>
+    </link>
+
+    <joint name="laser_base_to_laser" type="fixed">
+        <parent link="laser_base"/>
+        <child link="laser"/>
+        <origin rpy="0 0 3.14159265359" xyz="0 0 0.0263766"/>
+    </joint>
+
+</robot>
